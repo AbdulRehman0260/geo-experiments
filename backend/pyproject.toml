@@ -1,0 +1,16 @@
+[project]
+name = "axperiments"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "matplotlib>=3.10.9",
+    "pandas>=3.0.2",
+    "scikit-learn>=1.8.0",
+    "sparsesc",
+    "statsmodels>=0.14.6",
+]
+
+[tool.uv.sources]
+sparsesc = { git = "https://github.com/microsoft/SparseSC.git" }
