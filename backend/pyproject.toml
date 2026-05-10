@@ -5,11 +5,14 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
+    "fastapi>=0.136.1",
     "matplotlib>=3.10.9",
     "pandas>=3.0.2",
+    "python-multipart>=0.0.27",
     "scikit-learn>=1.8.0",
     "sparsesc",
     "statsmodels>=0.14.6",
+    "uvicorn>=0.46.0",
 ]
 
 [tool.uv.sources]
