@@ -131,7 +131,7 @@ class GeoTest:
         
         Returns: Dictionary with detection results
         """
-        # Get original data
+        # original data
         y_pred_pre, pre_period_y, y_pred_post, post_period_y = self.model(self.geo)
         
         # Calculate original lift (before adding effect)
@@ -165,7 +165,7 @@ class GeoTest:
             
             plt.figure(figsize=(12, 6))
             
-            # Plot original data
+            # Plot data
             plt.plot(pre_dates, pre_period_y, 'b-', label='Actual (Pre)', linewidth=2)
             plt.plot(pre_dates, y_pred_pre, 'b--', label='Synthetic (Pre)', linewidth=2)
             plt.plot(post_dates, post_period_y, 'r-', label='Actual (Post - Original)', linewidth=2, alpha=0.5)
@@ -197,7 +197,6 @@ class GeoTest:
         }
     
     def plot_results(self):
-        """Simple plot of synthetic control results"""
         y_pred_pre, pre_period_y, y_pred_post, post_period_y = self.model(self.geo)
         
         dates = self.df['date'].unique()[-180:]
