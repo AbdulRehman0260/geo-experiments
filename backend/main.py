@@ -13,14 +13,13 @@ stored_geos = []
 app = FastAPI(title="Axperiments API", description="Synthetic Control Analysis API")
 
 origins = [
-    "http://localhost:5173",
     "https://axperiments-frontend.vercel.app"
 ]
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
-    allow_credentials=False,
+    allow_credentials=True,
     allow_methods=['*'],
     allow_headers=['*']
 )
