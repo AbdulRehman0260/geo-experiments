@@ -10,7 +10,7 @@ const HomePage = () => {
     const onSubmit = async (e) => {
         e.preventDefault()
         if (!file) {
-            alert("Please select a CSV file")
+            alert("Please select a CSV or Excel file")
             return
         }
 
@@ -49,13 +49,13 @@ const HomePage = () => {
         <div className='flex flex-col justify-center items-center min-h-screen bg-gray-50'>
             <div className='text-center max-w-md w-full px-4'>
                 <h1 className='text-3xl mb-2 text-gray-800 font-bold'>Axperiments - Geo Analyzer</h1>
-                <p className='text-sm text-gray-600 mb-8'>Upload CSV data for synthetic control analysis</p>
+                <p className='text-sm text-gray-600 mb-8'>Upload CSV or Excel data for synthetic control analysis</p>
 
                 <form onSubmit={onSubmit} className='space-y-4 mb-8'>
                     <input
                         className='w-full border border-gray-300 rounded px-3 py-2 text-sm'
                         type="file"
-                        accept=".csv"
+                        accept=".csv,.xlsx,.xls"
                         onChange={handleFileChange}
                     />
                     <button
@@ -68,7 +68,7 @@ const HomePage = () => {
 
                 <div className='text-xs text-gray-500 space-y-1'>
                     <p>Required: date, geo, leads columns</p>
-                    <p>Supports CSV format only</p>
+                    <p>Supports CSV and Excel formats (.csv, .xlsx, .xls)</p>
                 </div>
 
                 <div className='mt-12 pt-8 border-t border-gray-200'>

@@ -2,7 +2,7 @@ from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 from pydantic import BaseModel
-from src.helper.helper import read_csv
+from src.helper.helper import read_file
 
 import pandas as pd
 import numpy as np
@@ -39,11 +39,11 @@ def get_geos():
 async def upload_csv(file: UploadFile = File(...)):
     from geolocation import GeoSelector
 
-    if not file.filename.endswith('.csv'):
-        return {"error": "File must be a CSV"}
+    if not file.filename.lower().endswith(('.csv', '.xlsx', '.xls')):
+        return {"error": "File must be CSV or Excel (.xlsx, .xls)"}
     
     try:
-        df = await read_csv(file)
+        df = await read_file(file)
         stored_dataframes["main"] = df
         global stored_geos
         stored_geos = df['geo'].unique().tolist()
