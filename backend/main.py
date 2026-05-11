@@ -13,7 +13,8 @@ stored_geos = []
 app = FastAPI(title="Axperiments API", description="Synthetic Control Analysis API")
 
 origins = [
-    "http://localhost:5173"
+    "http://localhost:5173",
+    "https://axperiments-frontend.vercel.app"
 ]
 
 app.add_middleware(
