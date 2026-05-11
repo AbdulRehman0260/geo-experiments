@@ -18,7 +18,7 @@ const HomePage = () => {
         formData.append("file", file)
 
         try {
-            const fetchResponse = await fetch("http://localhost:8000/upload-csv", {
+            const fetchResponse = await fetch("https://axperiments.onrender.com/upload-csv", {
                 method: "POST",
                 body: formData,
             })

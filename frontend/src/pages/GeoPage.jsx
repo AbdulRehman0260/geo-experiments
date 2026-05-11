@@ -16,7 +16,7 @@ const GeoPage = () => {
     useEffect(() => {
         const fetchGeos = async () => {
             try {
-                const response = await fetch("http://localhost:8000/get-geos", {
+                const response = await fetch("https://axperiments.onrender.com/get-geos", {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -35,7 +35,7 @@ const GeoPage = () => {
 
     const fetchGeo = async (geo) => {
         try {
-            const fetchResponse = await fetch("http://localhost:8000/analyze-geo", {
+            const fetchResponse = await fetch("https://axperiments.onrender.com/analyze-geo", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -57,7 +57,7 @@ const GeoPage = () => {
     const fetchPlot = async (geo, effectSize) => {
         try {
             console.log("Fetching plot for:", geo, "with effect size:", effectSize);
-            const fetchResponse = await fetch("http://localhost:8000/generate-plot", {
+            const fetchResponse = await fetch("https://axperiments.onrender.com/generate-plot", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
