@@ -13,7 +13,7 @@ stored_geos = []
 app = FastAPI(title="Axperiments API", description="Synthetic Control Analysis API")
 
 origins = [
-    "https://axperiments-frontend.vercel.app"
+    "https://axperiments.vercel.app"
 ]
 
 app.add_middleware(
@@ -23,6 +23,10 @@ app.add_middleware(
     allow_methods=['*'],
     allow_headers=['*']
 )
+
+@app.get("/")
+def root():
+    return {"status": "ok"}
 
 @app.get("/get-geos")
 def get_geos():
