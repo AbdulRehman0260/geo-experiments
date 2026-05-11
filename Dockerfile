@@ -1,24 +1,36 @@
-# Dockerfile (at root level)
-FROM node:20-alpine as frontend-build
-
-WORKDIR /app/frontend
-COPY frontend/package*.json ./
-RUN npm install
-COPY frontend/ ./
-RUN npm run build
-
-FROM python:3.11-slim as backend
+FROM node:20-alpine
 
 WORKDIR /app
-COPY backend/pyproject.toml backend/uv.lock* ./
-RUN pip install uv && uv sync
-COPY backend/ ./
 
-# Copy built frontend
-COPY --from=frontend-build /app/frontend/dist ./static
+COPY package*.json .
 
+RUN npm install
+
+COPY . .
+
+EXPOSE 5173
+
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
+
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Install Git and uv
+RUN apt-get update && apt-get install -y git && \
+    pip install uv && \
+    rm -rf /var/lib/apt/lists/*
+
+# Configure Git to skip SSL verification (for Docker builds)
 RUN git config --global http.sslVerify false
+
+# copy project files
+COPY pyproject.toml uv.lock* ./
+COPY . .
+
+# install dependencies using uv
 RUN uv sync
 
 EXPOSE 8000
+
 CMD ["uv", "run", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
